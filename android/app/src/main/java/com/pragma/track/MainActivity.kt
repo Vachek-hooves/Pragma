@@ -1,4 +1,4 @@
-package com.pragma
+package com.pragma.track
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

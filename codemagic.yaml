@@ -39,6 +39,9 @@ workflows:
       - name: Build ipa for distribution
         script: |
           #!/bin/sh
+          echo "Current directory: $(pwd)"
+          echo "Looking for workspace in: $CM_BUILD_DIR/ios/$XCODE_WORKSPACE"
+          ls -la $CM_BUILD_DIR/ios/
           xcode-project build-ipa \
             --workspace "$CM_BUILD_DIR/ios/$XCODE_WORKSPACE" \
             --scheme "$XCODE_SCHEME"

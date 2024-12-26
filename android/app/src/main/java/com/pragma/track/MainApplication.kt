@@ -1,4 +1,4 @@
-package com.pragma
+package com.pragma.track
 
 import android.app.Application
 import com.facebook.react.PackageList

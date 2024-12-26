@@ -30,7 +30,7 @@ export default StoryCard;
 
 const styles = StyleSheet.create({
   cardContainer: {
-    backgroundColor: '#3D2748',
+    backgroundColor: '#3D2748'+50,
     borderRadius: 16,
     marginBottom: 16,
     overflow: 'hidden',

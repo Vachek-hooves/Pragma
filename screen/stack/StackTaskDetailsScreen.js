@@ -14,6 +14,7 @@ import {useAppContext} from '../../store/context';
 import TaskDetailsHeader from '../../component/StackTaskDetailsComponents/TaskDetailsHeader';
 import CloseTaskBtn from '../../component/StackTaskDetailsComponents/CloseTaskBtn';
 import TaskSaveCloseBtn from '../../component/StackTaskDetailsComponents/TaskSaveCloseBtn';
+import ImagedLayout from '../../component/layout/ImagedLayout';
 
 const StackTaskDetailsScreen = ({route, navigation}) => {
   //   const navigation = useNavigation();
@@ -54,84 +55,86 @@ const StackTaskDetailsScreen = ({route, navigation}) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      {/* Header */}
-      <TaskDetailsHeader onPress={handleIsEditing} />
-      <ScrollView>
-        {/* Title and Description */}
-        <View style={styles.section}>
-          {isEditing ? (
-            <TextInput
-              style={styles.titleInput}
-              value={editedTitle}
-              onChangeText={setEditedTitle}
-              placeholderTextColor="rgba(255, 255, 255, 0.5)"
-            />
-          ) : (
-            <Text style={styles.title}>{task.title}</Text>
-          )}
-
-          <Text style={styles.date}>{task.dueDate}</Text>
-
-          {isEditing ? (
-            <TextInput
-              style={styles.descriptionInput}
-              value={editedDescription}
-              onChangeText={setEditedDescription}
-              multiline
-              placeholderTextColor="rgba(255, 255, 255, 0.5)"
-            />
-          ) : (
-            <Text style={styles.description}>{task.description}</Text>
-          )}
-        </View>
-
-        {/* Milestones */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Milestones</Text>
-          {task.milestones.map((milestone, index) => (
-            <View key={index} style={styles.milestoneRow}>
+    <ImagedLayout>
+      <SafeAreaView style={styles.container}>
+        {/* Header */}
+        <TaskDetailsHeader onPress={handleIsEditing} />
+        <ScrollView>
+          {/* Title and Description */}
+          <View style={styles.section}>
+            {isEditing ? (
               <TextInput
-                style={styles.milestoneInput}
-                value={milestone.title}
-                editable={false}
+                style={styles.titleInput}
+                value={editedTitle}
+                onChangeText={setEditedTitle}
+                placeholderTextColor="rgba(255, 255, 255, 0.5)"
               />
-              <TouchableOpacity
-                style={[
-                  styles.checkButton,
-                  milestone.done && styles.checkButtonActive,
-                ]}
-                onPress={() => handleMilestoneToggle(milestone.id)}>
-                <Icon
-                  name={
-                    milestone.done
-                      ? 'checkmark-done-outline'
-                      : 'checkmark-outline'
-                  }
-                  size={28}
-                  color="#FFFFFF"
+            ) : (
+              <Text style={styles.title}>{task.title}</Text>
+            )}
+
+            <Text style={styles.date}>{task.dueDate}</Text>
+
+            {isEditing ? (
+              <TextInput
+                style={styles.descriptionInput}
+                value={editedDescription}
+                onChangeText={setEditedDescription}
+                multiline
+                placeholderTextColor="rgba(255, 255, 255, 0.5)"
+              />
+            ) : (
+              <Text style={styles.description}>{task.description}</Text>
+            )}
+          </View>
+
+          {/* Milestones */}
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Milestones</Text>
+            {task.milestones.map((milestone, index) => (
+              <View key={index} style={styles.milestoneRow}>
+                <TextInput
+                  style={styles.milestoneInput}
+                  value={milestone.title}
+                  editable={false}
                 />
-              </TouchableOpacity>
-            </View>
-          ))}
-        </View>
-      </ScrollView>
-      {isTaskCompleted ? (
-        <CloseTaskBtn taskId={taskId} />
-      ) : (
-        <TaskSaveCloseBtn
-          isEditing={isEditing}
-          handleSaveEdits={handleSaveEdits}
-        />
-      )}
-    </SafeAreaView>
+                <TouchableOpacity
+                  style={[
+                    styles.checkButton,
+                    milestone.done && styles.checkButtonActive,
+                  ]}
+                  onPress={() => handleMilestoneToggle(milestone.id)}>
+                  <Icon
+                    name={
+                      milestone.done
+                        ? 'checkmark-done-outline'
+                        : 'checkmark-outline'
+                    }
+                    size={28}
+                    color="#FFFFFF"
+                  />
+                </TouchableOpacity>
+              </View>
+            ))}
+          </View>
+        </ScrollView>
+        {isTaskCompleted ? (
+          <CloseTaskBtn taskId={taskId} />
+        ) : (
+          <TaskSaveCloseBtn
+            isEditing={isEditing}
+            handleSaveEdits={handleSaveEdits}
+          />
+        )}
+      </SafeAreaView>
+    </ImagedLayout>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#16001E',
+    backgroundColor: '#16001E' + 50,
     paddingHorizontal: 26,
   },
   section: {
@@ -149,7 +152,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '600',
     marginBottom: 8,
-    backgroundColor: '#3D2748',
+    backgroundColor: '#3D2748'+50,
     borderRadius: 8,
     padding: 12,
   },
